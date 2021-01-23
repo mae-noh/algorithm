@@ -9,34 +9,29 @@ public class boj4344 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 	
-		int T=0, N=0, sum=0, cnt=0;
-		double avg=0;
-		int[] score;
-		
+		int T=0;		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
 		T = Integer.parseInt(br.readLine());
 		
 		for(int i=0; i<T; i++) {
-			st = new StringTokenizer(br.readLine());
-			N = Integer.parseInt(st.nextToken());
-			score = new int[N];
-			sum=0;
-			cnt=0;
-			for(int j=0; j<N; j++) {
-				score[j] = Integer.parseInt(st.nextToken());
-				sum += score[j];
-			}
-			avg = (double)sum/N;
+			String s = br.readLine();
+			String[] score = s.split(" ");
 			
-			for(int j=0; j<N; j++) {
-				if(score[j] > avg) {
+			int sum=0;
+			for(int j=1; j<score.length; j++) {
+				sum += Integer.parseInt(score[j]);
+			}
+			double avg = (double)sum/Integer.parseInt(score[0]);
+			
+			int cnt=0;
+			for(int j=1; j<score.length; j++) {
+				if(Integer.parseInt(score[j]) > avg) {
 					cnt++;
 				}
 			}
-
-			System.out.printf("%5.3f%%\n", (double)cnt/N*100);
+			System.out.printf("%5.3f%%\n", (double)cnt/Integer.parseInt(score[0])*100);
 		}
 	}
 
