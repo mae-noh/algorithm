@@ -9,7 +9,6 @@ import java.io.OutputStreamWriter;
 public class boj2292 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
@@ -21,14 +20,12 @@ public class boj2292 {
 	}
 
 	private static int sumOfRoom(int N) {
-		int result=0;
-		for(int i=1; i<50000; i++) {
-			if(((i-1)*6*i/2)+1>=N) {
-				result = i;
-				break;
-			}
+		int sum=0;
+		int i=0;
+		while(1+6*sum < N) {
+			sum+=++i;
 		}
-		return result;
+		return i+1;
 	}
 	
 }
