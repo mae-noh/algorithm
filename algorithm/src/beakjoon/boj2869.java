@@ -18,9 +18,8 @@ public class boj2869 {
 		double B = Double.valueOf(num[1]);
 		double V = Double.valueOf(num[2]);
 		
-		double day = V/(A-B);
-		double night = (V-B)/(A-B);
-		double ans = day < night ? day : night;
+		double ans = (V-B)/(A-B);
+		
 		bw.write((int)Math.ceil(ans)+"");		
 		bw.flush();
 		bw.close();
