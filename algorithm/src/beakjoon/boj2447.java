@@ -18,16 +18,28 @@ public class boj2447 {
 				arr[i][j] = "*";
 			}
 		}
-		recur(arr, N, N/3);
+		recur(arr, N, N/3, 0, 0);
 		for(int i=0; i<N; i++) {
 			for(int j=0; j<N; j++) {
-				System.out.print(arr[i][j]);
+				bw.write(arr[i][j]);
 			}
-			System.out.println();
+			bw.newLine();
 		}
+		bw.close();
+		br.close();
 	}
 
-	private static void recur(String[][] arr, int n, int r) {
-
+	private static void recur(String[][] arr, int n, int r, int x, int y) {
+		if(r < 1) return;
+		for(int i=x+n/3; i<x+n/3+r; i++) {
+			for(int j=y+n/3; j<y+n/3+r; j++) {
+				arr[i][j] = " ";
+			}
+		}
+		for(int i=x; i<x+n; i+=r) {
+			for(int j=y; j<y+n; j+=r) {
+				recur(arr, n/3, r/3, i, j);
+			}
+		}
 	}
 }
