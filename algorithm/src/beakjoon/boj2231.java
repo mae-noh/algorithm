@@ -14,11 +14,11 @@ public class boj2231 {
 		int len = N.length();
 		int numN = Integer.valueOf(N);
 		String[] arr = new String[numN+1];
-		int result = 0;
-		for(int i=numN-len*9; i<=numN; i++) {
+		int result = 0, i=0, j=0, tmp=0;
+		for(i = numN < 9 ? 1 : numN-len*9; i<numN; i++) {
 			arr[i] = i + "";
-			int j=arr[i].length()-1;
-			int tmp=i;
+			j=arr[i].length()-1;
+			tmp=i;
 			while(j>=0) {
 				tmp += arr[i].charAt(j) - '0';
 				j--;
