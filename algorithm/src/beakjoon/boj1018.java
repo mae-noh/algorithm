@@ -44,13 +44,27 @@ public class boj1018 {
 				{'W','B','W','B','W','B','W','B'},
 				};
 		
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<N; j++) {
-				for(int k=0; k<N; k++) {
-					
+		int min=65;
+		for(int i=0; i<=N-8; i++) {
+			for(int j=0; j<=M-8; j++) {
+				int minW=0, minB=0, x=0, y=0;
+				for(int k=i; k<i+8; k++) {
+					y=0;
+					for(int l=j; l<j+8; l++) {
+						System.out.println(x + " " + y);
+						if(chessW[x][y] != board[k][l]) minW++;
+						if(chessB[x][y] != board[k][l]) minB++;
+						y++;
+					}
+					x++;
 				}
+				int tmp = minW > minB ? minB : minW;
+				min = min > tmp ? tmp : min;
 			}
 		}
 		
+		bw.write(min + "");
+		bw.close();
+		br.close();
 	}
 }
