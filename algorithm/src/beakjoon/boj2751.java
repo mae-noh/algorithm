@@ -24,6 +24,9 @@ public class boj2751 {
 	}
 
 	private static int[] minHeapSort(int[] arr) {
+		if(true) {
+			
+		}
 		return null;
 	}
 }
