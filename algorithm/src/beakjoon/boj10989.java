@@ -14,16 +14,17 @@ public class boj10989 {
 		int N = Integer.valueOf(br.readLine());
 		int[] arr = new int[N];
 		int[] sortArr = new int[N];
-		int[] count = new int[10000];
+		int[] count = new int[10001];
 		for(int i=0; i<N; i++) {
 			arr[i] = Integer.valueOf(br.readLine());
 			count[arr[i]]++;
 		}
 		for(int i=1; i<N; i++) {
-			count[i] += count[i-1]; 
+			count[i] += count[i-1];
 		}
 		for(int i=N-1; i>=0; i--) {
 			sortArr[--(count[arr[i]])] = arr[i];
+			System.out.println("i" + i);
 		}
 		for(int i=0; i<N; i++) {
 			bw.write(sortArr[i] + "\n");
