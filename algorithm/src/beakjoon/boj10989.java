@@ -19,12 +19,12 @@ public class boj10989 {
 			arr[i] = Integer.valueOf(br.readLine());
 			count[arr[i]]++;
 		}
-		for(int i=1; i<N; i++) {
+		for(int i=1; i<count.length; i++) {
 			count[i] += count[i-1];
 		}
 		for(int i=N-1; i>=0; i--) {
-			sortArr[--(count[arr[i]])] = arr[i];
 			System.out.println("i" + i);
+			sortArr[--(count[arr[i]])] = arr[i];
 		}
 		for(int i=0; i<N; i++) {
 			bw.write(sortArr[i] + "\n");
