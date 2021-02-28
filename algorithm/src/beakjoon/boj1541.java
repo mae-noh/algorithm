@@ -9,11 +9,6 @@ import javax.script.ScriptException;
 public class boj1541 {
 	public static void main(String[] args) throws IOException, ScriptException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-//		ScriptEngineManager mgr = new ScriptEngineManager();
-//	    ScriptEngine engine = mgr.getEngineByName("JavaScript");
-//	    String foo = "40+2";
-//	    System.out.println(engine.eval(foo));
 		
 		String[] s = br.readLine().split("-");
 		int sum=0;
