@@ -30,10 +30,13 @@ public class boj13305 {
 				if(price.get(i) < price.get(j)) {
 					sumOfLen += len.get(j);
 					idx = j;
+				}else {
+					break;
 				}
 			}
+			System.out.println(price.get(i) + " " + sumOfLen + " " + i + " " + idx);
 			sum += price.get(i)*sumOfLen;
-			i = idx;	
+			i = idx;
 		}
 		System.out.println(sum);
 	}
