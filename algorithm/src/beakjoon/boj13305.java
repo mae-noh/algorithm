@@ -22,21 +22,12 @@ public class boj13305 {
 			price.add(i,Integer.valueOf(st.nextToken()));
 		}
 		long sum=0;
-		int i=0;
-		for(i=0; i<N-1; i++) {
-			int idx = i;
-			long sumOfLen=len.get(i);
-			for(int j=i+1; j<N-1; j++) {
-				if(price.get(i) < price.get(j)) {
-					sumOfLen += len.get(j);
-					idx = j;
-				}else {
-					break;
-				}
+		int min = 1000000001;
+		for(int i=0; i<N-1; i++) {
+			if(min > price.get(i)){
+				min = price.get(i);
 			}
-			System.out.println(price.get(i) + " " + sumOfLen + " " + i + " " + idx);
-			sum += price.get(i)*sumOfLen;
-			i = idx;
+			sum += (long)min*len.get(i);
 		}
 		System.out.println(sum);
 	}
