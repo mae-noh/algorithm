@@ -29,6 +29,7 @@ public class boj13305 {
 			}
 			sum += (long)min*len.get(i);
 		}
+		
 		System.out.println(sum);
 	}
 }
