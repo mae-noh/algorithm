@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -24,20 +25,18 @@ public class boj1260 {
 		}
 		for(int i=0; i<M; i++) {
 			s = br.readLine().split(" ");
-			graph.get(Integer.valueOf(s[0])).add(Integer.valueOf(s[1]));
-			graph.get(Integer.valueOf(s[1])).add(Integer.valueOf(s[0]));
+			int x = Integer.valueOf(s[0]);
+			int y = Integer.valueOf(s[1]);
+			graph.get(x).add(y);
+			graph.get(y).add(x);
 		}
 		for(ArrayList<Integer> a : graph) {
-			a.sort(Comparator.naturalOrder());
+			a.sort(Comparator.naturalOrder()); //null 사용시 오름차순 정
 		}
 		dfs(V);
-		init();
-		bfs(V);
-	}
-
-	private static void init() {
-		visited = new boolean[1001];
+		Arrays.fill(visited, false);
 		System.out.println("");
+		bfs(V);
 	}
 
 	private static void bfs(int v) {

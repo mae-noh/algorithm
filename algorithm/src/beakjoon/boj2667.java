@@ -69,8 +69,9 @@ public class boj2667 {
 	
 }
 
-class Position {
-	public Position(int x, int y) {
+//클래스명 중복
+class Position2 {
+	public Position2(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}

@@ -4,14 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
 
 public class boj2606 {
 
 	public static boolean[] visited = new boolean[101];
 	public static ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
+	public static int cnt = -1;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,30 +21,42 @@ public class boj2606 {
 		int M = Integer.valueOf(br.readLine());
 		for(int i=0; i<M; i++) {
 			s = br.readLine().split(" ");
-			graph.get(Integer.valueOf(s[0])).add(Integer.valueOf(s[1]));
-			graph.get(Integer.valueOf(s[1])).add(Integer.valueOf(s[0]));
+			int x = Integer.valueOf(s[0]);
+			int y = Integer.valueOf(s[1]);
+			graph.get(x).add(y);
+			graph.get(y).add(x);
 		}
-		System.out.println(countVirusPC(1)-1);
+		countVirusPC_DFS(1);
+		System.out.println(cnt);
+	}
+	
+	private static void countVirusPC_DFS(int v) {
+		visited[v] = true;
+		cnt++;
+		for(int i=0; i<graph.get(v).size(); i++) {
+			int y = graph.get(v).get(i);
+			if(!visited[y]) countVirusPC_DFS(y);
+		}
 	}
 
-	private static int countVirusPC(int v) {
-		Queue<Integer> q = new LinkedList<>();
-		visited[v] = true;
-		q.add(v);
-		
-		int cnt=0;
-		while(!q.isEmpty()) {
-			int x = q.poll();
-			cnt++;
-			for(int i=0; i<graph.get(x).size(); i++) {
-				int y=graph.get(x).get(i);
-				if(!visited[y]) {
-					visited[y] = true;
-					q.add(y);
-				}
-			}
-		}
-		return cnt;
-	}
+//	private static int countVirusPC_BFS(int v) {
+//		Queue<Integer> q = new LinkedList<>();
+//		visited[v] = true;
+//		q.offer(v);
+//		
+//		int cnt=-1;
+//		while(!q.isEmpty()) {
+//			int x = q.poll();
+//			cnt++;
+//			for(int i=0; i<graph.get(x).size(); i++) {
+//				int y=graph.get(x).get(i);
+//				if(!visited[y]) {
+//					visited[y] = true;
+//					q.offer(y);
+//				}
+//			}
+//		}
+//		return cnt;
+//	}
 	
 }
