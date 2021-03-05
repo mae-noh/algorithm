@@ -47,13 +47,13 @@ public class boj2667 {
 	}
 
 	private static void bfs(int x, int y) {
-		Queue<Position> q = new LinkedList<>();
+		Queue<Position2> q = new LinkedList<>();
 		visited[x][y] = true;
 		if(arr[x][y] == 0) return;
-		q.add(new Position(x, y));
+		q.add(new Position2(x, y));
 
 		while(!q.isEmpty()) {
-			Position tmp = q.poll();
+			Position2 tmp = q.poll();
 			count[cnt]++;
 			for(int j=0; j<4; j++) {
 				int tx = tmp.x+dx[j];
@@ -61,7 +61,7 @@ public class boj2667 {
 				if(tx < 0 || ty < 0 || tx > arr.length-1 || ty > arr.length-1) continue;
 				if(visited[tx][ty] || arr[tx][ty] == 0) continue;
 				visited[tx][ty] = true;
-				q.add(new Position(tx, ty));
+				q.add(new Position2(tx, ty));
 			}
 		}
 		cnt++;
