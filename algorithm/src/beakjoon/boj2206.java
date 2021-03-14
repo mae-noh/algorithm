@@ -45,7 +45,7 @@ public class boj2206 {
 				if(nextRow < 0 || nextCol < 0 || nextRow >= N || nextCol >= M) continue;
 				int nextWall = curPos[2] + board[nextRow][nextCol];
 				if(nextWall >= 2) continue;
-				if(board[nextRow][nextCol] == 0 || board[nextRow][nextCol] == 1) {
+				if(distance[nextRow][nextCol][nextWall]==0 && (board[nextRow][nextCol] == 0 || board[nextRow][nextCol] == 1)) {
 					distance[nextRow][nextCol][nextWall] = distance[curPos[0]][curPos[1]][curPos[2]] + 1;
 					q.offer(new int[]{nextRow, nextCol, nextWall});
 				}
