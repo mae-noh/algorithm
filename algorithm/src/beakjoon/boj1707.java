@@ -53,15 +53,15 @@ public class boj1707 {
 	}
 
 	private static boolean isBipartite(Queue<Integer> q, ArrayList<ArrayList<Integer>> graph, boolean[] group, boolean[] visited, int V) {
-		for (int j = 1; j <= V; j++) {
-			if (!visited[j]) q.offer(j);
+		for (int i = 1; i <= V; i++) {
+			if (!visited[i]) q.offer(i);
 
 			while (!q.isEmpty()) {
 				int curVertex = q.poll();
 				if (visited[curVertex])	continue;
 				visited[curVertex] = true;
-				for (int i = 0; i < graph.get(curVertex).size(); i++) {
-					int nextVertex = graph.get(curVertex).get(i);
+				for (int j = 0; j < graph.get(curVertex).size(); j++) {
+					int nextVertex = graph.get(curVertex).get(j);
 					if (visited[nextVertex] && group[curVertex] == group[nextVertex]) return false;
 					if (!visited[nextVertex]) {
 						group[nextVertex] = !group[curVertex];
