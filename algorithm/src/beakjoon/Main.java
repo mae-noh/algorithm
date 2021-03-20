@@ -3,24 +3,40 @@ package beakjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 	
 	   public static void main(String[] args) throws NumberFormatException, IOException{
 		  
-		   BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			String[] input = br.readLine().split(" ");
-			int N = Integer.parseInt(input[0]);
-			int K = Integer.parseInt(input[1]);
-			input = br.readLine().split(" ");
-			int[] arr = new int[N];
-			for(int i=0; i<N; i++){
-				arr[i] = Integer.parseInt(input[i]);
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			int T = Integer.parseInt(br.readLine());
+			StringTokenizer st = null;
+			for(int i=0; i<T; i++){
+				st = new StringTokenizer(br.readLine());
+				long N = Long.parseLong(st.nextToken());
+				long M = Long.parseLong(st.nextToken());
+				System.out.println(countCoupon(N, M));
 			}
-			int result = (int)(Math.abs((N-1.0)/(K-1.0)));
-			System.out.println(result);
+		}
+		private static long countCoupon(long N, long M) {
+			if(N<5) return 0;
+			
+			long cnt=0, min=N/5;
+			for(int i=5; i<12; i++){
+				long season = N/i;
+				long normal = M/(12-i);
+				if(normal == 0) continue;
+				if(season <= normal) cnt = season;
+				if(season > normal) cnt = normal;
+				min = cnt > min ? cnt : min;
+				min = min > (N+M)/12 ? (N+M)/12 : min;
+			}			
+			return min;
+		}
 		
-	   }
-
+//		private static long countCoupon(long N, long M) {
+//			return Math.min(N/5, (N+M)/12);
+//		}
 }
 
