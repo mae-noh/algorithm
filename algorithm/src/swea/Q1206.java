@@ -1,47 +1,26 @@
 package swea;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Q1206 {
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] args) throws Exception {
+		int[] buildings = new int[1000];
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
 		StringTokenizer st;
-		for(int test=0; test<T; test++) {
-			st = new StringTokenizer(br.readLine());
-			int N = Integer.parseInt(st.nextToken());
-			int M = Integer.parseInt(st.nextToken());
-			int[][] room = new int[M][N];
-			int[] cnt = new int[M];
-			Arrays.fill(cnt, N);
+		for(int i=1; i<=10; i++) {
+			int N = Integer.parseInt(br.readLine());
 			st = new StringTokenizer(br.readLine());
 			for(int j=0; j<N; j++) {
-				int lastIdx = Integer.parseInt(st.nextToken());
-				for(int i=M-1; i>=M-lastIdx; i--) {
-					room[i][j] = 1;
-					cnt[i]--;
-				}
+				buildings[j] = Integer.parseInt(st.nextToken());
 			}
-			Arrays.sort(cnt);
-//			for(int[] i : room) {
-//				for(int a : i) {
-//					System.out.print(a);
-//				}
-//				System.out.println();
-//			}			
-//			System.out.println(Arrays.toString(cnt));
-			
-			int max=0;
-			for(int i=M-1; i>=0; i--) {
-				if(cnt[i] == N) continue;
-				max = cnt[i];
-				break;
+			int cnt=0;
+			for(int j=2; j<N-2; j++) {
+				int tmp = buildings[j] - Math.max(Math.max(buildings[j-1], buildings[j-2]), Math.max(buildings[j+1], buildings[j+2]));
+				cnt += tmp > 0 ? tmp : 0;
 			}
-			System.out.println(max);
+			System.out.println("#"+i+" "+cnt);
 		}
 	}
 }
