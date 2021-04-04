@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Stack;
 
 public class Q1222 {
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String s;
@@ -49,4 +50,5 @@ public class Q1222 {
 		}
 		return stack.pop();
 	}
+	
 }

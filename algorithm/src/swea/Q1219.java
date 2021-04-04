@@ -35,12 +35,10 @@ public class Q1219 {
 	}
 	private static void dfs(int v) {
 		visited[v] = true;
-		
 		if(v == 99) {
 			result = 1;
 			return;
 		}
-		
 		if(arr[v*2] != 0 && result == 0) dfs(arr[v*2]);
 		if(arr[v*2+1] != 0 && result == 0) dfs(arr[v*2+1]);
 	}
