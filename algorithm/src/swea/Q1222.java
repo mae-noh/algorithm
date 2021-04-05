@@ -10,7 +10,7 @@ public class Q1222 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String s;
-		for(int testCase=1; testCase<=1; testCase++) {
+		for(int testCase=1; testCase<=10; testCase++) {
 			br.readLine();
 			s = br.readLine();
 			System.out.println("#"+testCase+" "+infixToPostfix(s));

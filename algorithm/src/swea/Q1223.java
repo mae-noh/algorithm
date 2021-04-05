@@ -40,7 +40,7 @@ public class Q1223 {
 	}
 
 	private static StringBuffer infixToPostfix(String s) {
-		Stack<operator> stack = new Stack<>();	
+		Stack<operator1> stack = new Stack<>();	
 		StringBuffer sb = new StringBuffer();
 		
 		for(int i=0; i<s.length(); i++) {
@@ -49,13 +49,13 @@ public class Q1223 {
 				while(!stack.isEmpty() && stack.peek().rank >= -2) {						
 					sb.append(stack.pop().op);
 				}
-				stack.add(new operator('+', -2));
+				stack.add(new operator1('+', -2));
 			}
 			if(cur == '*') {
 				while(!stack.isEmpty() && stack.peek().rank >= -1) {
 					sb.append(stack.pop().op);
 				}
-				stack.add(new operator('*', -1));
+				stack.add(new operator1('*', -1));
 			}
 			if(cur >= '0' && cur <= '9') {
 				sb.append(cur);
@@ -70,10 +70,10 @@ public class Q1223 {
 	
 }
 
-class operator{
+class operator1{
 	char op;
 	int rank;
-	operator(char op, int rank){
+	operator1(char op, int rank){
 		this.op = op;
 		this.rank = rank;
 	}
