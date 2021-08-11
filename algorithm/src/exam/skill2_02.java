@@ -5,38 +5,39 @@ import java.util.Arrays;
 public class skill2_02 {
 
 	public static void main(String[] args) {
-		int[] numbers = {2,1,3,4,1};
-		
-		System.out.println(Arrays.toString(solution(numbers)));
+		int[] scoville = { 1, 2, 3, 9, 10, 12 };
+		int K = 7;
+		System.out.println(solution(scoville, K));
 	}
-	
-	public static int[] solution(int[] numbers) {
-        int[] answer = {};
-        int MAX = 200 + 1;
-        
-        boolean[] num = new boolean[MAX+1];
-        int count=0;
 
-        
-        for(int i=0; i<numbers.length; i++) {
-        	for(int j=0; j<numbers.length && i!=j; j++) {
-        		int sum = numbers[i]+numbers[j];
-        		if(num[sum]) continue;
-        		num[sum] = true;
-    			count++;
-        	}
-        }
-        
-        int j=0;
-        answer = new int[count];
-        
-        for(int i=0; i<MAX; i++) {
-        	if(num[i]) {
-        		answer[j++] = i;
-        	}
-        }
-        
-        return answer;
-    }
-	
+	public static int solution(int[] scoville, int K) {
+		int answer = 0;
+
+		while (true) {
+			
+			Arrays.sort(scoville);
+			System.out.println(Arrays.toString(scoville));
+
+			int first = scoville[0];
+			int second = scoville[1];
+			
+			System.out.println(first + " " + second);
+			
+			if (first < K && second >= K) {
+				answer = -1;
+				break;
+			}
+			if (first >= K && second >= K) {
+				break;
+			}
+					
+			scoville[1] = K;			
+			scoville[0] = first + second*2;
+			
+			answer++;
+		}
+
+		return answer;
+	}
+
 }
