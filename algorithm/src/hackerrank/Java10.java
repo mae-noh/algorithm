@@ -5,7 +5,7 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-public class java10 {
+public class Java10 {
 
 	
 	static int B = 0;

@@ -2,7 +2,7 @@ package hackerrank;
 import java.util.*;
 import java.security.*;
 
-public class java11 {
+public class Java11 {
  public static void main(String[] args) {
 
   DoNotTerminate.forbidExit();
