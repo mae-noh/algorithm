@@ -15,10 +15,14 @@ public class Java24{
 			
           	//Write your code here
 			String pattern = "<(.+)>([^<]+)</\\1>";
-			if(line.matches(pattern)) line = line.replaceAll(pattern, "");
-			else line = "None";
+			Pattern p = Pattern.compile(pattern);
+			Matcher m = p.matcher(line);
 			
-			System.out.println(line);
+			boolean flag = false;
+			while(m.find()) {
+				System.out.println(m.group(2));
+			}			
+			System.out.println("None");
 			
 			testCases--;
 		}
