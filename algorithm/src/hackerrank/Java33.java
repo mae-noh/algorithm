@@ -20,7 +20,7 @@ public class Java33{
       int n = sc.nextInt();
       int m = sc.nextInt();
       for(int i = 0;i<n;i++){
-         mylist.add(sc.nextI nt());
+         mylist.add(sc.nextInt());
       }
       
       mylist.add("###");
