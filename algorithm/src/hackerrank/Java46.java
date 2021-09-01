@@ -3,38 +3,37 @@ package hackerrank;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-class Printer
-{
+class Printer {
 
-	//Write your code here
+	// Write your code here
 	public <E> void printArray(E[] array) {
 		// TODO Auto-generated method stub
-		for(E el : array) {
+		for (E el : array) {
 			System.out.println(el);
 		}
 	}
- 
+
 }
 
 public class Java46 {
 
+	public static void main(String args[]) {
+		Printer myPrinter = new Printer();
+		Integer[] intArray = { 1, 2, 3 };
+		String[] stringArray = { "Hello", "World" };
+		myPrinter.printArray(intArray);
+		myPrinter.printArray(stringArray);
+		int count = 0;
 
-    public static void main( String args[] ) {
-        Printer myPrinter = new Printer();
-        Integer[] intArray = { 1, 2, 3 };
-        String[] stringArray = {"Hello", "World"};
-        myPrinter.printArray(intArray);
-        myPrinter.printArray(stringArray);
-        int count = 0;
+		for (Method method : Printer.class.getDeclaredMethods()) {
+			String name = method.getName();
 
-        for (Method method : Printer.class.getDeclaredMethods()) {
-            String name = method.getName();
+			if (name.equals("printArray"))
+				count++;
+		}
 
-            if(name.equals("printArray"))
-                count++;
-        }
+		if (count > 1)
+			System.out.println("Method overloading is not allowed!");
 
-        if(count > 1)System.out.println("Method overloading is not allowed!");
-      
-    }
+	}
 }
