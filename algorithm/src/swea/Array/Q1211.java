@@ -1,4 +1,4 @@
-package swea;
+package swea.Array;
 
 import java.io.BufferedReader;
 import java.io.IOException;

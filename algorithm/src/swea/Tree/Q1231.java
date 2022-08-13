@@ -1,4 +1,4 @@
-package swea;
+package swea.Tree;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package swea;
+package swea.List;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
