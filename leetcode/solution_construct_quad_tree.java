@@ -1,4 +1,9 @@
 // Definition for a QuadTree node.
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 class Node {
     public boolean val;
     public boolean isLeaf;
@@ -34,31 +39,58 @@ class Node {
         this.bottomLeft = bottomLeft;
         this.bottomRight = bottomRight;
     }
+
 }
 
-class Solution {
-    // [[0,1],[1,0]]
-    public Node construct(int[][] grid) {
-        Node root = new Node();
+class solution_construct_quad_tree {
 
-        for(int i=0; i<grid.length-1; i++) {
-            // 069
+    public Node construct(int[][] grid, int startY, int endY, int startX, int endX) {
+        if(startY == endY && startX == endX) return new Node(grid[startY][startX] == 1, true);
+
+        int midY = (startY + endY) / 2;
+        int midX = (startX + endX) / 2;
+
+        Node topLeft = construct(grid, startY, midY, startX, midX);
+        Node topRight = construct(grid, startY, midY, midX + 1, endX);
+        Node bottomLeft = construct(grid, midY + 1, endY, startX, midX);
+        Node bottomRight = construct(grid, midY + 1, endY, midX + 1, endX);
+        
+        boolean isLeaf = topLeft.isLeaf && topRight.isLeaf && bottomLeft.isLeaf && bottomRight.isLeaf && 
+        topLeft.val == topRight.val && topRight.val == bottomLeft.val && bottomLeft.val == bottomRight.val;
+
+        if(isLeaf) {
+            return new Node(topLeft.val, true);
         }
-        return root;
+
+        return new Node(true, false, topLeft, topRight, bottomLeft, bottomRight);
     }
+
+    public Node construct(int[][] grid) {
+        return construct(grid, 0, grid.length - 1, 0, grid[0].length - 1);
+    }
+
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        solution_construct_quad_tree solution = new solution_construct_quad_tree();
     
         // Example 1
-        int[][] grid = {{0,1},{1,0}};
-        Node output1 = solution.construct(grid);
-        System.out.println("Example 1:");
-        System.out.println("length: " + grid.length);
-        System.out.println("Output: " + output1);
+        int[][] grid1 = {{0,1},{1,0}};
+        Node output1 = solution.construct(grid1);
+        System.out.println("Example 1");
+        System.out.println("Output1: " + output1);
+        System.out.println("Expected1: [[0,1],[1,0],[1,1],[1,1],[1,0]]");
+
+        // Example 2
+        int[][] grid2 = {{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0}};
+        Node output2 = solution.construct(grid2);
+        System.out.println("Example 2");
+        System.out.println("Output2: " + output2);
+        System.out.println("Expected2: [[0,1],[1,1],[0,1],[1,1],[1,0],null,null,null,null,[1,0],[1,0],[1,1],[1,1]]");
         
     }
 }
 /*
+https://leetcode.com/problems/construct-quad-tree/description/
+
 Given a n * n matrix grid of 0's and 1's only. We want to represent grid with a Quad-Tree.
 
 Return the root of the Quad-Tree representing grid.
